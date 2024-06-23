@@ -13,13 +13,16 @@ def create_todo(request):
     if request.method == "GET":
         return render(request, "create_todo.html", {"status_choices": status_choices})
     else:
+        date_completion = request.POST.get("date_completion")
+        if date_completion == '':
+            date_completion = None
+
         ToDo.objects.create(
             description=request.POST.get("description"),
             status=request.POST.get("status"),
-            date_completion=request.POST.get("date_completion")
+            date_completion=date_completion
         )
         return HttpResponseRedirect("/")
-
 
 
 def todo_delete(request):
@@ -36,4 +39,4 @@ def todo_detail(request):
         todo = ToDo.objects.get(id=request.GET.get("id"))
     except ToDo.DoesNotExist:
         return HttpResponseRedirect("/")
-    return render(request, "todo_detail.html", context={"todos": todo})
+    return render(request, "todo_detail.html", context={"todo": todo})

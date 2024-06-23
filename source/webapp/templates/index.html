@@ -13,14 +13,13 @@
 </head>
 <body>
 <br>
-<a href="create/">Создать задачу</a>
+<a href="create/">Создать задачу</a><br><br>
 <br>
 
 {% for todo in todos %}
     <div class="card mt-3" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">hiiiii</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">{{ todo.status }}</h6>
+            <h5 class="card-subtitle mb-2 text-body-secondary">{{ todo.status }}</h5>
             <p class="card-text">{{ todo.description }}</p>
             <a href="todo?id={{ todo.id }}" class="card-link">Детальный просмотр</a>
             <a href="#" class="card-link"></a>

@@ -1,0 +1,29 @@
+[
+{
+  "model": "webapp.todo",
+  "pk": 24,
+  "fields": {
+    "description": "i did this hw",
+    "status": "done",
+    "date_completion": "2024-06-24"
+  }
+},
+{
+  "model": "webapp.todo",
+  "pk": 25,
+  "fields": {
+    "description": "im tired",
+    "status": "new",
+    "date_completion": null
+  }
+},
+{
+  "model": "webapp.todo",
+  "pk": 26,
+  "fields": {
+    "description": "i doing this homework",
+    "status": "in_progress",
+    "date_completion": "2024-06-25"
+  }
+}
+]
