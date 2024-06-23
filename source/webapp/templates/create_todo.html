@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+
+<h1>Create ToDo_list</h1>
+
+
+<form action="/create/" method="post">
+    {% csrf_token %}
+    <label>Status:</label><br/>
+    <select name="status" id="">
+    {% for s in status_choices %}
+        <option value="{{ s.0 }}">{{ s.1 }}</option>
+    {% endfor %}
+    </select>
+    <br><br><label>Description:</label><br/>
+    <textarea name="description"></textarea><br/>
+    <br><label>Date completion:</label><br/>
+    <input type="date" name="date_completion|date:'Y-m-d' "/><br/>
+    <br/>
+    <input type="submit" value="Send"/>
+</form>
+</body>
+</html>
