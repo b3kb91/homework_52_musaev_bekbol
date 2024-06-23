@@ -9,6 +9,7 @@ class ToDo(models.Model):
     def __str__(self):
         return self.description
 
+
     class Meta:
         db_table = 'todo_lists'
         verbose_name = "Cписок задач"
