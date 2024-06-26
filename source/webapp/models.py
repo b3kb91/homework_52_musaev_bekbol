@@ -4,13 +4,14 @@ status_choices = [('new', 'Новая'), ('in_progress', 'В процессе'),
 
 
 class ToDo(models.Model):
-    description = models.TextField(max_length=500, null=False, blank=False, verbose_name="Описание")
+    description = models.CharField(max_length=50, null=False, blank=False, verbose_name="Описание")
+    description_detail = models.TextField(max_length=500, null=True, blank=True, verbose_name="Подробное описание")
     status = models.CharField(max_length=50, null=False, blank=False, verbose_name="Статус", default="new",
                               choices=status_choices)
     date_completion = models.DateField(null=True, blank=True, verbose_name="Дата выполнения")
 
     def __str__(self):
-        return f"{self.description} {self.date_completion} {self.status}"
+        return f"{self.description} {self.date_completion} {self.status} {self.description_detail}"
 
     class Meta:
         db_table = 'todo_lists'
