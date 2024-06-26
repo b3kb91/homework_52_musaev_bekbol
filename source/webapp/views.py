@@ -16,9 +16,12 @@ def create_todo(request):
         date_completion = request.POST.get("date_completion")
         if date_completion == '':
             date_completion = None
+        description_detail = request.POST.get("description_detail")
+        if description_detail == '':
+            description_detail = None
 
         ToDo.objects.create(
-            description_detail=request.POST.get("description_detail"),
+            description_detail=description_detail,
             description=request.POST.get("description"),
             status=request.POST.get("status"),
             date_completion=date_completion
