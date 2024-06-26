@@ -1,31 +1,26 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% block links %}
+{% endblock %}
+{% block content %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create</title>
-</head>
-<body>
-
-<h1>Create ToDo_list</h1>
+<h1>Создание новой задачи</h1>
 
 
 <form action="/create/" method="post">
     {% csrf_token %}
-    <label>Status:</label><br/>
+    <br><h5><label>Статус:</label><br/></h5>
     <select name="status" id="">
     {% for s in status_choices %}
         <option value="{{ s.0 }}">{{ s.1 }}</option>
     {% endfor %}
     </select>
-    <br><br><label>Description Detail:</label><br/>
-    <textarea name="description_detail"></textarea><br/>
-    <br><label>Description :</label><br/>
+    <h5><br><label>Подробное описание:</label><br/></h5>
+    <textarea class="text-content" name="description_detail"></textarea><br/>
+    <h5><br><label>Описание :</label><br/></h5>
     <input type="text" name="description"/><br/>
-    <br><label>Date completion:</label><br/>
+    <h5><br><label>Дата:</label><br/></h5>
     <input type="date" name="date_completion"/><br/>
     <br/>
-    <input type="submit" value="Send"/>
+    <input type="submit" value="Дропнуть)"/>
 </form>
-</body>
-</html>
+{% endblock %}

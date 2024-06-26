@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 
 from webapp.models import ToDo, status_choices
@@ -20,27 +20,21 @@ def create_todo(request):
         if description_detail == '':
             description_detail = None
 
-        ToDo.objects.create(
+        todo = ToDo.objects.create(
             description_detail=description_detail,
             description=request.POST.get("description"),
             status=request.POST.get("status"),
             date_completion=date_completion
         )
-        return HttpResponseRedirect("/")
+        return redirect("todo_detail", pk=todo.pk)
 
 
-def todo_delete(request):
-    try:
-        todo = ToDo.objects.get(id=request.GET.get("id"))
-        todo.delete()
-        return HttpResponseRedirect("/todo/")
-    except ToDo.DoesNotExist:
-        return HttpResponseRedirect("/")
+def todo_delete(request, *args, pk, **kwargs):
+    todo = get_object_or_404(ToDo, pk=pk)
+    todo.delete()
+    return redirect("todo")
 
 
-def todo_detail(request):
-    try:
-        todo = ToDo.objects.get(id=request.GET.get("id"))
-    except ToDo.DoesNotExist:
-        return HttpResponseRedirect("/")
+def todo_detail(request, *args, pk, **kwargs):
+    todo = get_object_or_404(ToDo, pk=pk)
     return render(request, "todo_detail.html", context={"todo": todo})
